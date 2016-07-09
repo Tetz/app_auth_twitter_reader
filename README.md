@@ -11,16 +11,12 @@ Currently, the maximum number of tweets you can get is limited to less than 3200
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'app_auth_twitter_reader'
+gem 'app_auth_twitter_reader',  :github => 'toshiya/app_auth_twitter_reader'
 ```
 
 And then execute:
 
     $ bundle
-
-Or install it yourself as:
-
-    $ gem install app_auth_twitter_reader
 
 ## Usage
 
