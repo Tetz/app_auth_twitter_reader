@@ -37,11 +37,14 @@ Assume that your key and secret is written in `./api_key` and `./api_secret`.
 
 ```bash
 
+# help
+bundle exec app_auth_twitter_reader  --help
+
 # get access token (only once)
-./get_timeline  --key=`cat ./api_key` --secret=`cat ./api_secret` > ./access_token
+bundle exec app_auth_twitter_reader  --key=`cat ./api_key` --secret=`cat ./api_secret` > ./access_token
 
 # get user timeline using the access token.
-./get_timeline  --token=`cat ./access_token` --screen_name twitter
+bundle exec app_auth_twitter_reader --token=`cat ./access_token` --screen_name twitter
 
 ```
 
