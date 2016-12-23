@@ -6,24 +6,24 @@ require "optparse"
 options = {}
 OptionParser.new do |opts|
   opts.on("-s", "--screen_name=SCREEN_NAME", "twitter screen_name. displayed as @SCREEN_NAME") do |v|
-      options[:screen_name] = v
+    options[:screen_name] = v
   end
 
   opts.on("--key=API_KEY", "twitter api key") do |v|
-      options[:key] = v
+    options[:key] = v
   end
 
   opts.on("--secret=API_SECRET", "twitter api secret") do |v|
-      options[:secret] = v
+    options[:secret] = v
   end
 
   opts.on("--token=ACCESS_TOKEN", "twitter access token") do |v|
-      options[:token] = v
+    options[:token] = v
   end
 
   opts.on("-h", "--help", "Prints this help") do
-      puts opts
-      exit
+    puts opts
+    exit
   end
 
   options[:help] = opts.to_s
@@ -32,45 +32,45 @@ end.parse!
 
 STEP_COUNTS=200
 if options[:key] && options[:secret] then
-    client = AppAuthTwitterReader::Client.new()
-    puts client.get_access_token(:key => options[:key], :secret => options[:secret])
-    exit
+  client = AppAuthTwitterReader::Client.new()
+  puts client.get_access_token(:key => options[:key], :secret => options[:secret])
+  exit
 end
 
 if options[:token] then
-    if options[:screen_name].nil? then
-        puts "--scree_name must be specified."
-        exit
-    end
-
-    client = AppAuthTwitterReader::Client.new()
-    (tweets, err) = client.get_user_timeline(
-        :access_token => options[:token],
-        :count        => STEP_COUNTS,
-        :screen_name  => options[:screen_name]
-    )
-
-    puts "created_at,text,favorite_count,retweet_count"
-    last_id = nil
-    if tweets != nil then
-        while(tweets.size > 1 || last_id.nil?)
-            tweets.each do |t|
-                puts [ t["created_at"], "\"#{t["text"]}\"", t["favorite_count"].to_s, t["retweet_count"].to_s].join(",")
-                last_id = t["id"]
-            end
-            (tweets, err) = client.get_user_timeline(
-                :access_token => options[:token],
-                :count        => STEP_COUNTS,
-                :screen_name  => options[:screen_name],
-                :max_id       => last_id
-            )
-            if !err.nil? then
-                break
-            end
-        end
-    end
-
-    puts err if !err.nil?
+  if options[:screen_name].nil? then
+    puts "--scree_name must be specified."
     exit
+  end
+
+  client = AppAuthTwitterReader::Client.new()
+  (tweets, err) = client.get_user_timeline(
+    access_token: options[:token],
+    count: STEP_COUNTS,
+    screen_name: options[:screen_name]
+  )
+
+  puts "created_at,text,favorite_count,retweet_count"
+  last_id = nil
+  if tweets != nil then
+    while(tweets.size > 1 || last_id.nil?)
+      tweets.each do |t|
+        puts [ t["created_at"], "\"#{t["text"]}\"", t["favorite_count"].to_s, t["retweet_count"].to_s].join(",")
+        last_id = t["id"]
+      end
+      (tweets, err) = client.get_user_timeline(
+        access_token: options[:token],
+        count: STEP_COUNTS,
+        screen_name: options[:screen_name],
+        max_id: last_id
+      )
+      if !err.nil? then
+        break
+      end
+    end
+  end
+
+  puts err if !err.nil?
+  exit
 end
 
