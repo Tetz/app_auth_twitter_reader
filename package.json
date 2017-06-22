@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/toshiya/app_auth_twitter_reader#readme",
   "devDependencies": {
-    "danger": "^0.21.1"
+    "danger": "^0.15.0"
   }
 }
