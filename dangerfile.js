@@ -1,1 +1,1 @@
-message("hello danger")
+fail("fail with danger")
