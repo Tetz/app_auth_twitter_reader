@@ -2,6 +2,7 @@
 
 Download user timelines from twitter api. The output format is csv. User timelines includes
 
+
 tweets by the user.
 retweets by the user.
 Currently, the maximum number of tweets you can get is limited to less than 3200 due to the API limitation. (See https://dev.twitter.com/rest/reference/get/statuses/user_timeline)
