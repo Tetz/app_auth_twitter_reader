@@ -1,0 +1,22 @@
+{
+  "name": "app_auth_twitter_reader",
+  "version": "1.0.0",
+  "description": "Download user timelines from twitter api. The output format is csv. User timelines includes",
+  "main": "index.js",
+  "scripts": {
+    "danger": "danger"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toshiya/app_auth_twitter_reader.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/toshiya/app_auth_twitter_reader/issues"
+  },
+  "homepage": "https://github.com/toshiya/app_auth_twitter_reader#readme",
+  "devDependencies": {
+    "danger": "^0.15.0"
+  }
+}
